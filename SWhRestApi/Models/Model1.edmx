@@ -1,0 +1,1149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SWHDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="check_store">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="store_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="staff_id" Type="bigint" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="check_store_detail">
+          <Key>
+            <PropertyRef Name="check_store_infor_id" />
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="check_store_infor_id" Type="int" Nullable="false" />
+          <Property Name="material_id" Type="int" Nullable="false" />
+          <Property Name="amount" Type="bigint" />
+        </EntityType>
+        <EntityType Name="material">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="supplier_infor_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="barcode" Type="int" Nullable="false" />
+          <Property Name="type_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="main_unit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="change_unit" Type="nvarchar" MaxLength="50" />
+          <Property Name="status_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="material_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="position">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="auth_token" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="gmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="position_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="store_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="status_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pic_url" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="status_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="store_material">
+          <Key>
+            <PropertyRef Name="store_id" />
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="store_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="material_id" Type="int" Nullable="false" />
+          <Property Name="amount" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exchange_store_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="store_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="staff_id" Type="bigint" Nullable="false" />
+          <Property Name="transaction_type_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="status_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transaction_detail">
+          <Key>
+            <PropertyRef Name="trans_id" />
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="trans_id" Type="int" Nullable="false" />
+          <Property Name="material_id" Type="int" Nullable="false" />
+          <Property Name="amount" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transaction_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Check store infor_Store infor">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="check_store" Type="Self.check_store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="check_store">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check store_Check store infor">
+          <End Role="check_store" Type="Self.check_store" Multiplicity="1" />
+          <End Role="check_store_detail" Type="Self.check_store_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="check_store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="check_store_detail">
+              <PropertyRef Name="check_store_infor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check store_Material">
+          <End Role="material" Type="Self.material" Multiplicity="1" />
+          <End Role="check_store_detail" Type="Self.check_store_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="check_store_detail">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_check_store_infor_staff_infor">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="check_store" Type="Self.check_store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="check_store">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_Material type">
+          <End Role="material_type" Type="Self.material_type" Multiplicity="1" />
+          <End Role="material" Type="Self.material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="material">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_material_status">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="material" Type="Self.material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="material">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_Supplier infor">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="material" Type="Self.material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="material">
+              <PropertyRef Name="supplier_infor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staff_infor_position1">
+          <End Role="position" Type="Self.position" Multiplicity="1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="position">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staff_status1">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staff_store">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_store_status">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="store" Type="Self.store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="store">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store-Goods_Store_Info">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="store_material" Type="Self.store_material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="store_material">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store's Material_Material">
+          <End Role="material" Type="Self.material" Multiplicity="1" />
+          <End Role="store_material" Type="Self.store_material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="store_material">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction infor_Staff infor">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction infor_Store infor">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaction_infor_transaction_type">
+          <End Role="transaction_type" Type="Self.transaction_type" Multiplicity="1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transaction_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="transaction_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Material">
+          <End Role="material" Type="Self.material" Multiplicity="1" />
+          <End Role="transaction_detail" Type="Self.transaction_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction_detail">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaction_status">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaction_store">
+          <End Role="store" Type="Self.store" Multiplicity="0..1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="exchange_store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Transaction infor">
+          <End Role="transaction" Type="Self.transaction" Multiplicity="1" />
+          <End Role="transaction_detail" Type="Self.transaction_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transaction">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction_detail">
+              <PropertyRef Name="trans_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SWHDatabaseModelStoreContainer">
+          <EntitySet Name="check_store" EntityType="Self.check_store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="check_store_detail" EntityType="Self.check_store_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="material" EntityType="Self.material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="material_type" EntityType="Self.material_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="position" EntityType="Self.position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="staff" EntityType="Self.staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="status" EntityType="Self.status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="store" EntityType="Self.store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="store_material" EntityType="Self.store_material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transaction_detail" EntityType="Self.transaction_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transaction_type" EntityType="Self.transaction_type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Check store infor_Store infor" Association="Self.FK_Check store infor_Store infor">
+            <End Role="store" EntitySet="store" />
+            <End Role="check_store" EntitySet="check_store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check store_Check store infor" Association="Self.FK_Check store_Check store infor">
+            <End Role="check_store" EntitySet="check_store" />
+            <End Role="check_store_detail" EntitySet="check_store_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check store_Material" Association="Self.FK_Check store_Material">
+            <End Role="material" EntitySet="material" />
+            <End Role="check_store_detail" EntitySet="check_store_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_check_store_infor_staff_infor" Association="Self.FK_check_store_infor_staff_infor">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="check_store" EntitySet="check_store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_Material type" Association="Self.FK_Material_Material type">
+            <End Role="material_type" EntitySet="material_type" />
+            <End Role="material" EntitySet="material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_material_status" Association="Self.FK_material_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="material" EntitySet="material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_Supplier infor" Association="Self.FK_Material_Supplier infor">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="material" EntitySet="material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staff_infor_position1" Association="Self.FK_staff_infor_position1">
+            <End Role="position" EntitySet="position" />
+            <End Role="staff" EntitySet="staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staff_status1" Association="Self.FK_staff_status1">
+            <End Role="status" EntitySet="status" />
+            <End Role="staff" EntitySet="staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staff_store" Association="Self.FK_staff_store">
+            <End Role="store" EntitySet="store" />
+            <End Role="staff" EntitySet="staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_store_status" Association="Self.FK_store_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="store" EntitySet="store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store-Goods_Store_Info" Association="Self.FK_Store-Goods_Store_Info">
+            <End Role="store" EntitySet="store" />
+            <End Role="store_material" EntitySet="store_material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store's Material_Material" Association="Self.FK_Store's Material_Material">
+            <End Role="material" EntitySet="material" />
+            <End Role="store_material" EntitySet="store_material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction infor_Staff infor" Association="Self.FK_Transaction infor_Staff infor">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="transaction" EntitySet="transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction infor_Store infor" Association="Self.FK_Transaction infor_Store infor">
+            <End Role="store" EntitySet="store" />
+            <End Role="transaction" EntitySet="transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaction_infor_transaction_type" Association="Self.FK_transaction_infor_transaction_type">
+            <End Role="transaction_type" EntitySet="transaction_type" />
+            <End Role="transaction" EntitySet="transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Material" Association="Self.FK_Transaction_Material">
+            <End Role="material" EntitySet="material" />
+            <End Role="transaction_detail" EntitySet="transaction_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaction_status" Association="Self.FK_transaction_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="transaction" EntitySet="transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaction_store" Association="Self.FK_transaction_store">
+            <End Role="store" EntitySet="store" />
+            <End Role="transaction" EntitySet="transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Transaction infor" Association="Self.FK_Transaction_Transaction infor">
+            <End Role="transaction" EntitySet="transaction" />
+            <End Role="transaction_detail" EntitySet="transaction_detail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SWHDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="check_store">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="store_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="staff_id" Type="Int64" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="store" Relationship="Self.FK_Check_store_infor_Store_infor" FromRole="check_store" ToRole="store" />
+          <NavigationProperty Name="check_store_detail" Relationship="Self.FK_Check_store_Check_store_infor" FromRole="check_store" ToRole="check_store_detail" />
+          <NavigationProperty Name="staff" Relationship="Self.FK_check_store_infor_staff_infor" FromRole="check_store" ToRole="staff" />
+        </EntityType>
+        <EntityType Name="check_store_detail">
+          <Key>
+            <PropertyRef Name="check_store_infor_id" />
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="check_store_infor_id" Type="Int32" Nullable="false" />
+          <Property Name="material_id" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int64" />
+          <NavigationProperty Name="check_store" Relationship="Self.FK_Check_store_Check_store_infor" FromRole="check_store_detail" ToRole="check_store" />
+          <NavigationProperty Name="material" Relationship="Self.FK_Check_store_Material" FromRole="check_store_detail" ToRole="material" />
+        </EntityType>
+        <EntityType Name="material">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supplier_infor_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="barcode" Type="Int32" Nullable="false" />
+          <Property Name="type_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="main_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="change_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="check_store_detail" Relationship="Self.FK_Check_store_Material" FromRole="material" ToRole="check_store_detail" />
+          <NavigationProperty Name="material_type" Relationship="Self.FK_Material_Material_type" FromRole="material" ToRole="material_type" />
+          <NavigationProperty Name="status" Relationship="Self.FK_material_status" FromRole="material" ToRole="status" />
+          <NavigationProperty Name="supplier" Relationship="Self.FK_Material_Supplier_infor" FromRole="material" ToRole="supplier" />
+          <NavigationProperty Name="store_material" Relationship="Self.FK_Store_s_Material_Material" FromRole="material" ToRole="store_material" />
+          <NavigationProperty Name="transaction_detail" Relationship="Self.FK_Transaction_Material" FromRole="material" ToRole="transaction_detail" />
+        </EntityType>
+        <EntityType Name="material_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="materials" Relationship="Self.FK_Material_Material_type" FromRole="material_type" ToRole="material" />
+        </EntityType>
+        <EntityType Name="position">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="staffs" Relationship="Self.FK_staff_infor_position1" FromRole="position" ToRole="staff" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="auth_token" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="gmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="position_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="store_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pic_url" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="check_store" Relationship="Self.FK_check_store_infor_staff_infor" FromRole="staff" ToRole="check_store" />
+          <NavigationProperty Name="position" Relationship="Self.FK_staff_infor_position1" FromRole="staff" ToRole="position" />
+          <NavigationProperty Name="status" Relationship="Self.FK_staff_status1" FromRole="staff" ToRole="status" />
+          <NavigationProperty Name="store" Relationship="Self.FK_staff_store" FromRole="staff" ToRole="store" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK_Transaction_infor_Staff_infor" FromRole="staff" ToRole="transaction" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="materials" Relationship="Self.FK_material_status" FromRole="status" ToRole="material" />
+          <NavigationProperty Name="staffs" Relationship="Self.FK_staff_status1" FromRole="status" ToRole="staff" />
+          <NavigationProperty Name="stores" Relationship="Self.FK_store_status" FromRole="status" ToRole="store" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK_transaction_status" FromRole="status" ToRole="transaction" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="check_store" Relationship="Self.FK_Check_store_infor_Store_infor" FromRole="store" ToRole="check_store" />
+          <NavigationProperty Name="staffs" Relationship="Self.FK_staff_store" FromRole="store" ToRole="staff" />
+          <NavigationProperty Name="status" Relationship="Self.FK_store_status" FromRole="store" ToRole="status" />
+          <NavigationProperty Name="store_material" Relationship="Self.FK_Store_Goods_Store_Info" FromRole="store" ToRole="store_material" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK_Transaction_infor_Store_infor" FromRole="store" ToRole="transaction" />
+          <NavigationProperty Name="transactions1" Relationship="Self.FK_transaction_store" FromRole="store" ToRole="transaction" />
+        </EntityType>
+        <EntityType Name="store_material">
+          <Key>
+            <PropertyRef Name="store_id" />
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="store_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="material_id" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="material" Relationship="Self.FK_Store_s_Material_Material" FromRole="store_material" ToRole="material" />
+          <NavigationProperty Name="store" Relationship="Self.FK_Store_Goods_Store_Info" FromRole="store_material" ToRole="store" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="materials" Relationship="Self.FK_Material_Supplier_infor" FromRole="supplier" ToRole="material" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exchange_store_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="store_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="staff_id" Type="Int64" Nullable="false" />
+          <Property Name="transaction_type_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="staff" Relationship="Self.FK_Transaction_infor_Staff_infor" FromRole="transaction" ToRole="staff" />
+          <NavigationProperty Name="status" Relationship="Self.FK_transaction_status" FromRole="transaction" ToRole="status" />
+          <NavigationProperty Name="store" Relationship="Self.FK_Transaction_infor_Store_infor" FromRole="transaction" ToRole="store" />
+          <NavigationProperty Name="store1" Relationship="Self.FK_transaction_store" FromRole="transaction" ToRole="store" />
+          <NavigationProperty Name="transaction_type" Relationship="Self.FK_transaction_infor_transaction_type" FromRole="transaction" ToRole="transaction_type" />
+          <NavigationProperty Name="transaction_detail" Relationship="Self.FK_Transaction_Transaction_infor" FromRole="transaction" ToRole="transaction_detail" />
+        </EntityType>
+        <EntityType Name="transaction_detail">
+          <Key>
+            <PropertyRef Name="trans_id" />
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="trans_id" Type="Int32" Nullable="false" />
+          <Property Name="material_id" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="material" Relationship="Self.FK_Transaction_Material" FromRole="transaction_detail" ToRole="material" />
+          <NavigationProperty Name="transaction" Relationship="Self.FK_Transaction_Transaction_infor" FromRole="transaction_detail" ToRole="transaction" />
+        </EntityType>
+        <EntityType Name="transaction_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK_transaction_infor_transaction_type" FromRole="transaction_type" ToRole="transaction" />
+        </EntityType>
+        <Association Name="FK_Check_store_infor_Store_infor">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="check_store" Type="Self.check_store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="check_store">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_store_Check_store_infor">
+          <End Role="check_store" Type="Self.check_store" Multiplicity="1" />
+          <End Role="check_store_detail" Type="Self.check_store_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="check_store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="check_store_detail">
+              <PropertyRef Name="check_store_infor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_check_store_infor_staff_infor">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="check_store" Type="Self.check_store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="check_store">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_store_Material">
+          <End Role="material" Type="Self.material" Multiplicity="1" />
+          <End Role="check_store_detail" Type="Self.check_store_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="check_store_detail">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_Material_type">
+          <End Role="material_type" Type="Self.material_type" Multiplicity="1" />
+          <End Role="material" Type="Self.material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="material">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_material_status">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="material" Type="Self.material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="material">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_Supplier_infor">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="material" Type="Self.material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="material">
+              <PropertyRef Name="supplier_infor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_s_Material_Material">
+          <End Role="material" Type="Self.material" Multiplicity="1" />
+          <End Role="store_material" Type="Self.store_material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="store_material">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Material">
+          <End Role="material" Type="Self.material" Multiplicity="1" />
+          <End Role="transaction_detail" Type="Self.transaction_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction_detail">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staff_infor_position1">
+          <End Role="position" Type="Self.position" Multiplicity="1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="position">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staff_status1">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_staff_store">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="staff" Type="Self.staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="staff">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_infor_Staff_infor">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_store_status">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="store" Type="Self.store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="store">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaction_status">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_Goods_Store_Info">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="store_material" Type="Self.store_material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="store_material">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_infor_Store_infor">
+          <End Role="store" Type="Self.store" Multiplicity="1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaction_store">
+          <End Role="store" Type="Self.store" Multiplicity="0..1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="exchange_store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaction_infor_transaction_type">
+          <End Role="transaction_type" Type="Self.transaction_type" Multiplicity="1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transaction_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="transaction_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Transaction_infor">
+          <End Role="transaction" Type="Self.transaction" Multiplicity="1" />
+          <End Role="transaction_detail" Type="Self.transaction_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transaction">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction_detail">
+              <PropertyRef Name="trans_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SWHDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="check_store" EntityType="Self.check_store" />
+          <EntitySet Name="check_store_detail" EntityType="Self.check_store_detail" />
+          <EntitySet Name="materials" EntityType="Self.material" />
+          <EntitySet Name="material_type" EntityType="Self.material_type" />
+          <EntitySet Name="positions" EntityType="Self.position" />
+          <EntitySet Name="staffs" EntityType="Self.staff" />
+          <EntitySet Name="status" EntityType="Self.status" />
+          <EntitySet Name="stores" EntityType="Self.store" />
+          <EntitySet Name="store_material" EntityType="Self.store_material" />
+          <EntitySet Name="suppliers" EntityType="Self.supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="transactions" EntityType="Self.transaction" />
+          <EntitySet Name="transaction_detail" EntityType="Self.transaction_detail" />
+          <EntitySet Name="transaction_type" EntityType="Self.transaction_type" />
+          <AssociationSet Name="FK_Check_store_infor_Store_infor" Association="Self.FK_Check_store_infor_Store_infor">
+            <End Role="store" EntitySet="stores" />
+            <End Role="check_store" EntitySet="check_store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_store_Check_store_infor" Association="Self.FK_Check_store_Check_store_infor">
+            <End Role="check_store" EntitySet="check_store" />
+            <End Role="check_store_detail" EntitySet="check_store_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_check_store_infor_staff_infor" Association="Self.FK_check_store_infor_staff_infor">
+            <End Role="staff" EntitySet="staffs" />
+            <End Role="check_store" EntitySet="check_store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_store_Material" Association="Self.FK_Check_store_Material">
+            <End Role="material" EntitySet="materials" />
+            <End Role="check_store_detail" EntitySet="check_store_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_Material_type" Association="Self.FK_Material_Material_type">
+            <End Role="material_type" EntitySet="material_type" />
+            <End Role="material" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_material_status" Association="Self.FK_material_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="material" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_Supplier_infor" Association="Self.FK_Material_Supplier_infor">
+            <End Role="supplier" EntitySet="suppliers" />
+            <End Role="material" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_s_Material_Material" Association="Self.FK_Store_s_Material_Material">
+            <End Role="material" EntitySet="materials" />
+            <End Role="store_material" EntitySet="store_material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Material" Association="Self.FK_Transaction_Material">
+            <End Role="material" EntitySet="materials" />
+            <End Role="transaction_detail" EntitySet="transaction_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staff_infor_position1" Association="Self.FK_staff_infor_position1">
+            <End Role="position" EntitySet="positions" />
+            <End Role="staff" EntitySet="staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staff_status1" Association="Self.FK_staff_status1">
+            <End Role="status" EntitySet="status" />
+            <End Role="staff" EntitySet="staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_staff_store" Association="Self.FK_staff_store">
+            <End Role="store" EntitySet="stores" />
+            <End Role="staff" EntitySet="staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_infor_Staff_infor" Association="Self.FK_Transaction_infor_Staff_infor">
+            <End Role="staff" EntitySet="staffs" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_store_status" Association="Self.FK_store_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="store" EntitySet="stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaction_status" Association="Self.FK_transaction_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_Goods_Store_Info" Association="Self.FK_Store_Goods_Store_Info">
+            <End Role="store" EntitySet="stores" />
+            <End Role="store_material" EntitySet="store_material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_infor_Store_infor" Association="Self.FK_Transaction_infor_Store_infor">
+            <End Role="store" EntitySet="stores" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaction_store" Association="Self.FK_transaction_store">
+            <End Role="store" EntitySet="stores" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaction_infor_transaction_type" Association="Self.FK_transaction_infor_transaction_type">
+            <End Role="transaction_type" EntitySet="transaction_type" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Transaction_infor" Association="Self.FK_Transaction_Transaction_infor">
+            <End Role="transaction" EntitySet="transactions" />
+            <End Role="transaction_detail" EntitySet="transaction_detail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SWHDatabaseModelStoreContainer" CdmEntityContainer="SWHDatabaseEntities">
+          <EntitySetMapping Name="check_store">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.check_store">
+              <MappingFragment StoreEntitySet="check_store">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+                <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="check_store_detail">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.check_store_detail">
+              <MappingFragment StoreEntitySet="check_store_detail">
+                <ScalarProperty Name="check_store_infor_id" ColumnName="check_store_infor_id" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materials">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.material">
+              <MappingFragment StoreEntitySet="material">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="supplier_infor_id" ColumnName="supplier_infor_id" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="main_unit" ColumnName="main_unit" />
+                <ScalarProperty Name="change_unit" ColumnName="change_unit" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="material_type">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.material_type">
+              <MappingFragment StoreEntitySet="material_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="positions">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.position">
+              <MappingFragment StoreEntitySet="position">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="staffs">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.staff">
+              <MappingFragment StoreEntitySet="staff">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="auth_token" ColumnName="auth_token" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gmail" ColumnName="gmail" />
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="pic_url" ColumnName="pic_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="status">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.status">
+              <MappingFragment StoreEntitySet="status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stores">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.store">
+              <MappingFragment StoreEntitySet="store">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="store_material">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.store_material">
+              <MappingFragment StoreEntitySet="store_material">
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="suppliers">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.supplier">
+              <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactions">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.transaction">
+              <MappingFragment StoreEntitySet="transaction">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="exchange_store_id" ColumnName="exchange_store_id" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+                <ScalarProperty Name="transaction_type_id" ColumnName="transaction_type_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transaction_detail">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.transaction_detail">
+              <MappingFragment StoreEntitySet="transaction_detail">
+                <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transaction_type">
+            <EntityTypeMapping TypeName="SWHDatabaseModel.transaction_type">
+              <MappingFragment StoreEntitySet="transaction_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

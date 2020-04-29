@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "server=swhdb.database.windows.net;Database=SWHDatabase;Trusted_Connection=False;user Id=adminSWhDb;password=vuquanghuy123!" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/DBModels -Force -Table Transaction

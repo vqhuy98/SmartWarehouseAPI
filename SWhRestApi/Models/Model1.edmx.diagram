@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ae6260ce6a8a4e028fbbf60fa102685f" Name="Diagram1">
+        <EntityTypeShape EntityType="SWHDatabaseModel.check_store" Width="1.5" PointX="7.5" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.check_store_detail" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.material" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.material_type" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.position" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.staff" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.status" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.store" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.store_material" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.supplier" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.transaction" Width="1.5" PointX="10.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.transaction_detail" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWHDatabaseModel.transaction_type" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Check_store_infor_Store_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Check_store_Check_store_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_check_store_infor_staff_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Check_store_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Material_Material_type" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_material_status" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Material_Supplier_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Store_s_Material_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Transaction_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_staff_infor_position1" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_staff_status1" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_staff_store" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Transaction_infor_Staff_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_store_status" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_transaction_status" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Store_Goods_Store_Info" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Transaction_infor_Store_infor" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_transaction_store" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_transaction_infor_transaction_type" ManuallyRouted="false" />
+        <AssociationConnector Association="SWHDatabaseModel.FK_Transaction_Transaction_infor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
